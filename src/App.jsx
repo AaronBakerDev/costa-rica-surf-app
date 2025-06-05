@@ -1,34 +1,44 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Header from './components/Header'
+import SurfSpotGrid from './components/SurfSpotGrid'
+import BookingModal from './components/BookingModal'
+import { surfSpots } from './data/surfSpots'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedSpot, setSelectedSpot] = useState(null)
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+
+  const handleBookNow = (spot) => {
+    setSelectedSpot(spot)
+    setIsBookingModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsBookingModalOpen(false)
+    setSelectedSpot(null)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <Header />
+      <main className="main-content">
+        <div className="hero-section">
+          <h1>Discover Epic Surf Adventures in Costa Rica</h1>
+          <p>Book unforgettable surf trips at the best spots along Costa Rica's coastline</p>
+        </div>
+        <SurfSpotGrid 
+          spots={surfSpots} 
+          onBookNow={handleBookNow}
+        />
+      </main>
+      {isBookingModalOpen && (
+        <BookingModal 
+          spot={selectedSpot}
+          onClose={closeModal}
+        />
+      )}
+    </div>
   )
 }
 
