@@ -39,3 +39,7 @@ Uses flat config format with:
 - React refresh for HMR compatibility
 - Browser globals
 - Custom rule for unused vars with capital letter exceptions
+
+## Writing Guidelines
+
+- Always write copy with a flare
