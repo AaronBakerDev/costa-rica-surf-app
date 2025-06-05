@@ -3,6 +3,7 @@ import Header from './components/Header'
 import SurfSpotGrid from './components/SurfSpotGrid'
 import BookingModal from './components/BookingModal'
 import AboutTinkso from './components/AboutTinkso'
+import FriendGreeter from './components/FriendGreeter'
 import { surfSpots } from './data/surfSpots'
 import './App.css'
 
@@ -52,6 +53,7 @@ function App() {
           onClose={closeModal}
         />
       )}
+      <FriendGreeter />
     </div>
   )
 }
